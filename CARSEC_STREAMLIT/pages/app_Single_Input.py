@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Dec  7 18:16:21 2022
+Created on Tue Dec 13 12:22:55 2022
 
 @author: namnguyen
-"""
 
+
+"""
 
 import streamlit as st
 import json
@@ -15,8 +16,13 @@ from collections import defaultdict
 from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
 
 
+path_out_txt=r'/Users/namnguyen/Desktop/CARSEC_STREAMLIT/Out_txt'
 
-st.subheader("Template:")
+
+
+#%%
+
+st.subheader("Single Input:")
 
 DB = {}
 #**********************************
@@ -83,15 +89,9 @@ st.write("Definición de cada uno de los puntos")
 
 df_punt_contorno= pd.DataFrame(
     '',
-    index=range(7),
+    index=range(10),
     columns=['punt', 'X', 'Y']    
 )
-
-df_punt_contorno['punt']=list(range(1,8))
-df_punt_contorno['X']=[0,2,2,0,1,0.05,1.95]
-df_punt_contorno['Y']=[0,0,2,2,1,0.05,0.05]
-
-
 st.markdown('**Punto del contorno**')
 response = AgGrid(df_punt_contorno, editable=True, fit_columns_on_grid_load=True) 
 DB['punt_contorno'] = response['data'].to_dict('records')
@@ -115,13 +115,9 @@ st.write("-***“hp”*** puntos que definen el contorno poligonal")
 
 df_hp = pd.DataFrame(
     '',
-    index=range(1),
+    index=range(3),
     columns=['Punto_1', 'Punto_2', 'Punto_3', 'Punto_4']
 )
-df_hp['Punto_1']=[1]
-df_hp['Punto_2']=[2]
-df_hp['Punto_3']=[3]
-df_hp['Punto_4']=[4]
 st.markdown('**Contorno Poligonal**')
 response = AgGrid(df_hp, editable=True, fit_columns_on_grid_load=True)
 
@@ -137,8 +133,6 @@ df_hc = pd.DataFrame(
     index=range(1),
     columns=['Punto_Central', 'Radio']
 )
-df_hc['Punto_Central']=[5]
-df_hc['Radio']=0.30
 st.markdown('**hc**')
 response = AgGrid(df_hc, editable=True, fit_columns_on_grid_load=True)
 DB['hc']= response['data'].to_dict('records')
@@ -166,14 +160,9 @@ st.write("\n")
 st.write("-punto inicial    punto final      número de cables     área de cada cable")
 df_Caracteristicas = pd.DataFrame(
     '',
-    index=range(1),
+    index=range(3),
     columns=['Punto_Inicial', 'Punto_Final', 'No_Armadura', 'Area']
 )
-df_Caracteristicas['Punto_Inicial']=[6]
-
-df_Caracteristicas['Punto_Final']=[7]
-df_Caracteristicas['No_Armadura']=[10]
-df_Caracteristicas['Area']=[0.000314]
 
 st.markdown('**Caracteristicas**')
 response = AgGrid(df_Caracteristicas, editable=True, fit_columns_on_grid_load=True)
@@ -204,12 +193,10 @@ st.write("-Axil     momento X    momento Y")
 
 df_LC = pd.DataFrame(
     '',
-    index=range(1),
+    index=range(3),
     columns=['Axil', 'monento_X', 'momento_Y']
 )
-df_LC['Axil']=[-10]
-df_LC['monento_X']=[5]
-df_LC['momento_Y']=[2]
+
 
 st.markdown('**LC**')
 response = AgGrid(df_LC, editable=True, fit_columns_on_grid_load=True, use_checkbox=True)
@@ -230,42 +217,47 @@ st.write("Indica el final de la sección. Es obligatorio ponerlo")
 
 st.write('fin')
 
+  #%%
+
+import CARSEC as CS
+
+CS.CARSEC_Writer(DB=DB, name="CS_Single_input")
+
+    
+
+ 
 
 
-
-
-
-
-
+#%%
+   
 # =============================================================================
+# st.subheader("Single Input:")
+# 
 # DB = {}
+# #**********************************
 # st.write("* Tipo de seccion:")
 # # 2-secc
-# DB['secc'] = st.selectbox('secc', options=['horm'])
+# DB['secc'] = st.selectbox('"secc"', options=['horm'])
 # st.write("* Unidades a emplear:")
 # # 3-unid
-# DB['unid'] = st.selectbox("unid" , options=['tm'])
+# DB['unid'] = st.selectbox("unid" , options=['tm','knm','lbin'])
 # st.write("* Normativa a emplear:")
 # # 4-norm
-# DB['norm'] = st.selectbox('norm', options=['ehe'])
+# DB['norm'] = st.selectbox('norm', options=['ehe','aashto'])
 # st.write("* Coefficients :")
 # # 5-coef horm/ arma/ pret
-# DB['coef_horm'] = st.text_input("horm", 1.50)
-# DB['coef_arma'] = st.text_input("arma", 1.15)
-# DB['coef_pret'] = st.text_input("pret", 1.15)
+# DB['coef_horm'] = st.text_input("horm", )
+# DB['coef_arma'] = st.text_input("arma", )
+# DB['coef_pret'] = st.text_input("pret", )
 # 
 # # *************************
 # #* Punto del contorno
 # 
 # df_punt_contorno= pd.DataFrame(
 #     '',
-#     index=range(7),
-#     columns=['punt', 'X', 'Y']
-#     
+#     index=range(10),
+#     columns=['punt', 'X', 'Y']    
 # )
-# df_punt_contorno['punt']=list(range(1,8))
-# df_punt_contorno['X']=[0,2,2,0,1,0.05,1.95]
-# df_punt_contorno['Y']=[0,0,2,2,1,0.05,0.05]
 # 
 # st.header('Punto del contorno')
 # response = AgGrid(df_punt_contorno, editable=True, fit_columns_on_grid_load=True) 
@@ -274,22 +266,18 @@ st.write('fin')
 # # *************************
 # 
 # st.write("* Definition del hormigon:")
-# t_h = st.selectbox("tipo de hormigon", options=["t/m2"])
+# t_h = st.selectbox("Tipo de hormigon", options=["kN/m2","t/m2"])
 # 
-# DB['horm'] = st.text_input("horm", 3500)
+# DB['horm'] = st.text_input("hormigon", )
 # 
 # # *************************
 # # Contorno Poligonal (hp)
 # 
 # df_hp = pd.DataFrame(
 #     '',
-#     index=range(1),
+#     index=range(3),
 #     columns=['Punto_1', 'Punto_2', 'Punto_3', 'Punto_4']
 # )
-# df_hp['Punto_1']=[1]
-# df_hp['Punto_2']=[2]
-# df_hp['Punto_3']=[3]
-# df_hp['Punto_4']=[4]
 # 
 # st.header('Contorno Poligonal')
 # response = AgGrid(df_hp, editable=True, fit_columns_on_grid_load=True)
@@ -304,8 +292,7 @@ st.write('fin')
 #     index=range(1),
 #     columns=['Punto_Central', 'Radio']
 # )
-# df_hc['Punto_Central']=[5]
-# df_hc['Radio']=0.30
+# 
 # 
 # st.header('Punto central/ Radio')
 # response = AgGrid(df_hc, editable=True, fit_columns_on_grid_load=True)
@@ -315,7 +302,7 @@ st.write('fin')
 # 
 # st.write("* Definicion de acero pasivo: fyk")
 # 
-# t_a = st.selectbox("tipo de armadura", options=["t/m2"])
+# t_a = st.selectbox("tipo de armadura", options=["kN/m2","t/m2"])
 # DB['arma'] = st.text_input("armadura", 51000)
 # 
 # # *************************
@@ -323,14 +310,9 @@ st.write('fin')
 # # Caracteristicas
 # df_Caracteristicas = pd.DataFrame(
 #     '',
-#     index=range(1),
+#     index=range(3),
 #     columns=['Punto_Inicial', 'Punto_Final', 'No_Armadura', 'Area']
 # )
-# df_Caracteristicas['Punto_Inicial']=[6]
-# 
-# df_Caracteristicas['Punto_Final']=[7]
-# df_Caracteristicas['No_Armadura']=[10]
-# df_Caracteristicas['Area']=[0.000314]
 # 
 # st.header('Caracteristicas')
 # response = AgGrid(df_Caracteristicas, editable=True, fit_columns_on_grid_load=True)
@@ -338,31 +320,19 @@ st.write('fin')
 # 
 # # *************************
 # st.write("* Calculate of section")
-# calc = st.selectbox("calc", options=["inte"])
+# calc = st.selectbox("calc", options=["dibu", "inte"])
 # 
 # df_LC = pd.DataFrame(
 #     '',
-#     index=range(1),
+#     index=range(3),
 #     columns=['Axil', 'monento_X', 'momento_Y']
 # )
-# df_LC['Axil']=[-10]
-# df_LC['monento_X']=[5]
-# df_LC['momento_Y']=[2]
 # 
 # st.header('LC')
 # response = AgGrid(df_LC, editable=True, fit_columns_on_grid_load=True, use_checkbox=True)
 # DB['LC'] = response['data'].to_dict('records')
 # 
+# DB['fin']=st.text_input('fin', 'fin')
+# 
 # =============================================================================
-
-#%%
-
-import CARSEC as CS
-
-CS.CARSEC_Writer(DB=DB, name="CS_template")
-
-  
-
-    
-
 
