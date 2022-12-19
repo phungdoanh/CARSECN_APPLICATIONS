@@ -9,7 +9,7 @@ openpyxl
 pip
 pdfplumber
 streamlit-aggrid
-base64
+pybase64
 seaborn
 collections
 defaultdict
