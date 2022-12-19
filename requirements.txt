@@ -5,15 +5,4 @@ streamlit
 matplotlib
 xlsxwriter
 Openpyxl 
-openpyxl 
 pip
-pdfplumber
-streamlit-aggrid
-pybase64
-seaborn
-collections
-defaultdict
-st_aggrid
-AgGrid
-GridOptionsBuilder
-GridUpdateMode
