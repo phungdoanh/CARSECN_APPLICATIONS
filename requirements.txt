@@ -11,3 +11,9 @@ pdfplumber
 streamlit-aggrid
 base64
 seaborn
+collections
+defaultdict
+st_aggrid
+AgGrid
+GridOptionsBuilder
+GridUpdateMode
