@@ -14,6 +14,11 @@ def show_pdf(file_path):
     pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="800" height="1000" type="application/pdf">'
     st.markdown(pdf_display, unsafe_allow_html=True)
 
+    
+    
+st.write("This is the original pdf")
+    
+    
 show_pdf("Input_files/carsecn.pdf")
 
 
