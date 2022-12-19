@@ -9,3 +9,4 @@ openpyxl
 pip
 pdfplumber
 streamlit-aggrid
+base64
