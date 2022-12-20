@@ -35,12 +35,12 @@ from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
 #%%# 
 
 st.write('In this template file we organize our dataset as an excel file with 6 Speadsheets:')
-st.write("***Properties*** difines all the coefficients of materials.")
-st.write("***Geometries*** indicates all set-up points")
-st.write("***hp*** shows the points make the poligonal shape.")
-st.write("***hc*** indicate the central point and the radial of steel which located in that position")
-st.write("***Caracteristics*** defines the area of material's distibuition.")
-st.write("***LC*** dLoad Case")
+st.write("***Properties: *** defines all the coefficients of materials.")
+st.write("***Geometries: *** indicates all set-up points")
+st.write("***hp: *** shows the points which make the poligonal shape.")
+st.write("***hc: *** indicates the central point and the radial of steel which located in that position")
+st.write("***Caracteristics: *** defines the area of material's distibuition.")
+st.write("***LC: *** Load Case")
 st.subheader('Preview data')
 # Input excel 
 input_DB = pd.read_excel(
