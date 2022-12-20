@@ -116,8 +116,8 @@ DB['punt_contorno'] = response['data'].dropna(axis='rows', how='any').to_dict('r
 x=response['data']['X'].values.tolist()[0:4]
 y=response['data']['Y'].values.tolist()[0:4]
 
-CS.polygonal_graphics(x, y,path="Output_files\graph")
-st.image("Output_files\graph.png")
+CS.polygonal_graphics(x, y,path="Output_files/graph")
+st.image("Output_files/graph.png")
 
 # *************************hormigon
 st.write("\n")
