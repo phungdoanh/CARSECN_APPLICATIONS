@@ -97,12 +97,19 @@ for i in ID_list:
            
 import CARSEC as CS
 
+
 #CS.CARSEC_Writer(DB=multi_DB['A'], name="CS_Multi")
+
+def multi_CARSEC_writer(multi_DB,export_path='CS_Multi_'):
+	for i_d in multi_DB:
+		CARSEC_Writer(multi_DB[i_d], export_path=export_path+str(i_d))
+
+
             
-def multi_CARSEC_Writer(multi_DB):
-    for i_d in multi_DB:
+#def multi_CARSEC_Writer(multi_DB):
+#    for i_d in multi_DB:
         
-        CS.CARSEC_Writer(multi_DB[i_d], name='CS_Multi_'+str(i_d))
+#        CS.CARSEC_Writer(multi_DB[i_d], name='CS_Multi_'+str(i_d))
     
     
 multi_CARSEC_Writer(multi_DB)
