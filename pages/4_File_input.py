@@ -36,7 +36,7 @@ if uploaded_file is not None:
 
 st.subheader('Download CARSEC files')
 
-path='Output_files\Multi_CARSEC'
+path='Output_files/Multi_CARSEC'
 if os.path.exists(path):
 	dirs = os.listdir(path)
 	for file in dirs:
