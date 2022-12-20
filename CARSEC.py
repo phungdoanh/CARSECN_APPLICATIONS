@@ -9,6 +9,11 @@ Created on Mon Dec 12 14:29:57 2022
 import pandas as pd
 import json
 import os
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import matplotlib as mpl
+import copy
 
 
 #%%# Create a None Database
@@ -35,8 +40,8 @@ import os
 
 #%% Functions:
 
-def CARSEC_Writer(DB,name='CARSEC'):
-    with open(name+'.txt', 'w') as f:
+def CARSEC_Writer(DB,export_path='CARSEC'):
+    with open(export_path+'.txt', 'w') as f:
         f.write('CARSECN'+' \n')
         f.write('* Tipo de seccion '+'\n')  
         f.write('secc '+str(DB['secc'])+' \n')
@@ -102,7 +107,7 @@ def load_json(path='my_DB.json'):
     
 # Create a function Streamlit to JSON !!!!!!
 
-def DB_to_JSON(DB):
+def DB_to_json(DB):
     #read DB to Dict
     # Create a loop to check if the values are DF and transform to JSON
     for k,v in DB.items():
@@ -111,9 +116,74 @@ def DB_to_JSON(DB):
         else:
             v=json.dumps(v)
             
-            
-            
-            
 
-            
+def table_to_dict(dict_tables):
+	#Create a multi database where each Database equivalents to one unique ID
+	ID_list = (dict_tables['Properties']['ID'].unique()).tolist()
+	multi_DB={}
+	for i in ID_list:
+		multi_DB[i]={}
+		for k in dict_tables:
+			multi_DB[i][k] = dict_tables[k][dict_tables[k]['ID'] == i]
+			if k=='Properties':
+				multi_DB[i]['secc']=multi_DB[i][k]['secc'].tolist()[0]
+				multi_DB[i]['unid']=multi_DB[i][k]['unid'].tolist()[0]
+				multi_DB[i]['norm']=multi_DB[i][k]['norm'].tolist()[0]
+				multi_DB[i]['coef_horm']=multi_DB[i][k]['coef_horm'].tolist()[0]
+				multi_DB[i]['coef_arma']=multi_DB[i][k]['coef_arma'].tolist()[0]
+				multi_DB[i]['coef_pret']=multi_DB[i][k]['coef_pret'].tolist()[0]
+				multi_DB[i]['horm']=multi_DB[i][k]['horm'].tolist()[0]
+				multi_DB[i]['arma']=multi_DB[i][k]['arma'].tolist()[0]
+				
+			elif k=="Geometries":
+				multi_DB[i]['punt_contorno']=multi_DB[i][k].iloc[:,1:10].dropna(axis=1).to_dict('record')
+				
+			elif k=="hp":
+				multi_DB[i]['contorno_Poligonal']=multi_DB[i][k].iloc[:,1:11].dropna(axis=1).to_dict('records')
+				
+			elif k=="hc":
+				multi_DB[i]['hc']=multi_DB[i][k].iloc[:,1:3].to_dict('record')
+				
+			elif k=="Caracteristicas":
+				multi_DB[i]['punt_armadura']=multi_DB[i][k].iloc[:,1:10].to_dict('record')
+				
+			elif k=="LC":
+				multi_DB[i]['LC']=multi_DB[i][k].iloc[:,1:5].to_dict('record')
+	
+	return multi_DB
 
+
+
+def multi_CARSEC_writer(multi_DB,export_path='CS_Multi_'):
+	for i_d in multi_DB:
+		CARSEC_Writer(multi_DB[i_d], export_path=export_path+str(i_d))
+
+
+
+
+def excel_to_CARSEC(load_path,export_path='CS_Multi_'):
+	dict_tables = pd.read_excel(load_path,sheet_name=None)
+	multi_DB=table_to_dict(dict_tables)
+	multi_CARSEC_writer(multi_DB=multi_DB,export_path=export_path)
+
+
+
+
+
+def polygonal_graphics(x,y,path):
+
+	fig, ax = plt.subplots()
+	
+	
+	trapezoid = patches.Polygon(xy=list(zip(x,y)), fill=False)
+	ax.add_patch(copy.copy(trapezoid))
+	
+	t_start = ax.transData
+	t = mpl.transforms.Affine2D().rotate_deg(0)
+	t_end = t + t_start
+	
+	trapezoid.set_transform(t_end)
+	ax.add_patch(trapezoid)
+	ax.set_xlim([-5, 5])
+	ax.set_ylim([-5, 5])
+	fig.savefig(path+'.png',bbox_inches='tight',dpi=100)
