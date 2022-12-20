@@ -37,7 +37,7 @@ from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
 
 st.subheader('Preview data')
 
-st.markdown('In this template file we organize our dataset as an excel file with 6 Speadsheets:')
+st.markdown(#'In this template file we organize our dataset as an excel file with 6 Speadsheets:')
 st.write("***Properties:*** defines all the coefficients of materials.")
 st.write("***Geometries:*** indicates all set-up points")
 st.write("***hp:*** shows the points which make the poligonal shape.")
