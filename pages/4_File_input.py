@@ -20,7 +20,7 @@ from zipfile import ZipFile
 
 st.subheader('Download Excel Template input')
 
-with open("Input_files\CARSEC_excel.xlsx", "rb") as fp:
+with open("Input_files/CARSEC_excel.xlsx", "rb") as fp:
 	btn = st.download_button(label="Download Excel Template",data=fp,file_name="CARSEC_Excel_Input.xlsx",mime="application/xlsx")
 	
 st.subheader('Upload Excel input')
