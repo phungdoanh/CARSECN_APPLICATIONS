@@ -46,69 +46,7 @@ st.write("***Caracteristics:*** defines the area of material's distibuition.")
 st.write("***LC:*** Load Case")
 
 
-
-# Input excel 
-input_DB = pd.read_excel(
-    r'Input_files/CARSEC_excel.xlsx',
-    sheet_name=None, header=0, index_col=None)
-#Show all tables in excel
-list_tables=list(input_DB.keys())
-
-for k in list_tables:  
-    st.write(k)
-    st.write(input_DB[k].head(10))
-    
-
-#Create a multi database where each Database equivalents to one unique ID
- 
-ID_list = (input_DB['Properties']['ID'].unique()).tolist()
-
-
-multi_DB={}
-
-for i in ID_list:
-    multi_DB[i]={}
- 
-    for k in list_tables:
-        multi_DB[i][k] = input_DB[k][input_DB[k]['ID'] == i]
-        if k=='Properties':
-            multi_DB[i]['secc']=multi_DB[i][k]['secc'].tolist()[0]
-            multi_DB[i]['unid']=multi_DB[i][k]['unid'].tolist()[0]
-            multi_DB[i]['norm']=multi_DB[i][k]['norm'].tolist()[0]
-            multi_DB[i]['coef_horm']=multi_DB[i][k]['coef_horm'].tolist()[0]
-            multi_DB[i]['coef_arma']=multi_DB[i][k]['coef_arma'].tolist()[0]
-            multi_DB[i]['coef_pret']=multi_DB[i][k]['coef_pret'].tolist()[0]
-            multi_DB[i]['horm']=multi_DB[i][k]['horm'].tolist()[0]
-            multi_DB[i]['arma']=multi_DB[i][k]['arma'].tolist()[0]
-            
-        elif k=="Geometries":
-            multi_DB[i]['punt_contorno']=multi_DB[i][k].iloc[:,1:10].dropna(axis=1).to_dict('record')
-            
-        elif k=="hp":
-            multi_DB[i]['contorno_Poligonal']=multi_DB[i][k].iloc[:,1:11].dropna(axis=1).to_dict('records')
-            
-        elif k=="hc":
-            multi_DB[i]['hc']=multi_DB[i][k].iloc[:,1:3].to_dict('record')
-            
-        elif k=="Caracteristicas":
-            multi_DB[i]['punt_armadura']=multi_DB[i][k].iloc[:,1:10].to_dict('record')
-            
-        elif k=="LC":
-            multi_DB[i]['LC']=multi_DB[i][k].iloc[:,1:5].to_dict('record')
-            
-           
-import CARSEC as CS
-
-#CS.CARSEC_Writer(DB=multi_DB['A'], name="CS_Multi")
-            
-def multi_CARSEC_Writer(multi_DB):
-    for i_d in multi_DB:
-        
-        CS.CARSEC_Writer(multi_DB[i_d], name='CS_Multi_'+str(i_d))
-    
-    
-multi_CARSEC_Writer(multi_DB)
-        
+multi_DB["Properties"]
             
             
             
