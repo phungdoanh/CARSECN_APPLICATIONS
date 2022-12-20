@@ -47,7 +47,7 @@ st.write("***LC:*** Load Case")
 
 
 input_DB = pd.read_excel(
-    r'/Users/namnguyen/Desktop/CARSEC_STREAMLIT/Input_files/CARSEC_excel.xlsx',
+    r'Input_files/CARSEC_excel.xlsx',
     sheet_name=None, header=0, index_col=None)
 #Show all tables in excel
 list_tables=list(input_DB.keys())
