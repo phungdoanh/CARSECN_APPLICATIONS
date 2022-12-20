@@ -95,14 +95,14 @@ for i in ID_list:
             multi_DB[i]['LC']=multi_DB[i][k].iloc[:,1:5].to_dict('record')
             
            
-import CARSEC as CS
+#import CARSEC as CS
 
 
 #CS.CARSEC_Writer(DB=multi_DB['A'], name="CS_Multi")
 
-def multi_CARSEC_writer(multi_DB,export_path='CS_Multi_'):
-	for i_d in multi_DB:
-		CARSEC_Writer(multi_DB[i_d], export_path=export_path+str(i_d))
+#def multi_CARSEC_writer(multi_DB,export_path='CS_Multi_'):
+#	for i_d in multi_DB:
+#		CARSEC_Writer(multi_DB[i_d], export_path=export_path+str(i_d))
 
 
             
@@ -112,10 +112,10 @@ def multi_CARSEC_writer(multi_DB,export_path='CS_Multi_'):
 #        CS.CARSEC_Writer(multi_DB[i_d], name='CS_Multi_'+str(i_d))
     
     
-multi_CARSEC_Writer(multi_DB)
+#multi_CARSEC_Writer(multi_DB)
         
             
-CS.CARSEC_Writer(DB=DB, export_path="Output_files/Multi_Output")")          
+#CS.CARSEC_Writer(DB=DB, export_path="Output_files/Multi_Output")")          
             
             
             
