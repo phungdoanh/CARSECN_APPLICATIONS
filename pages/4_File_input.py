@@ -16,23 +16,19 @@ import CARSEC as CS
 from zipfile import ZipFile
 
 
-#%%# 
 
-st.subheader('Drop and Drag excel file')
-
+#%%%%%%%%%%%%%%%%%%
+st.subheader('Download Excel Template input')
+with open("Input_files/CARSEC_excel.xlsx", "rb") as fp:
+	btn = st.download_button(label="Download Excel Template",data=fp,file_name="CARSEC_Excel_Input.xlsx",mime="application/xlsx")
+#%%%%%%%%%%%%%%%%%%%	
+st.subheader('Upload your own Excel file')
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
 	st.write('Data preview')
 	_tables=pd.read_excel(uploaded_file,sheet_name=None)
 	for k in _tables:  
 		st.write(_tables[k])
-#%%%%%%%%%%%%%%%%%%
-st.subheader('Download Excel Template input')
-
-with open("Input_files/CARSEC_excel.xlsx", "rb") as fp:
-	btn = st.download_button(label="Download Excel Template",data=fp,file_name="CARSEC_Excel_Input.xlsx",mime="application/xlsx")
-#%%%%%%%%%%%%%%%%%%%	
-st.subheader('Upload Excel input')
 
 st.subheader('Download CARSEC files')
 
@@ -44,20 +40,20 @@ if os.path.exists(path):
 		
 
 if uploaded_file is not None:
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path='Output_files/Multi_CARSEC/CS_Multi_')
+	multi_name_file = tempfile.gettempdir() + "/CARSEC_multi.zip"
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file)
 
 
 dirs = os.listdir(path)
-with ZipFile('Output_files/CARSEC_multi.zip', 'w') as zipObj:
+multi_name_file_txt = multi_name_file + '.txt'	
+with ZipFile(multi_name_file_txt, 'w') as zipObj:
 	# Add multiple files to the zip
 	for file in dirs:
 		st.write(file)
 		zipObj.write('Output_files/Multi_CARSEC'+'//'+file)
-	
-with open('Output_files/CARSEC_multi.zip', "rb") as fp:
+
+with open(multi_name_file_txt, "rb") as fp:
 	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
-	
-	
 	
 	
 
