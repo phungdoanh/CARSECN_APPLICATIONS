@@ -53,8 +53,8 @@ with ZipFile('/CARSEC_multi.zip', 'w') as zipObj:
  		st.write(file)
  		zipObj.write('/CARSEC_multi'+'//'+file)
 
-	
-with open('/CARSEC_multi.zip', "rb") as fp:
+multi_name_file_tex=multi_name_file+'.txt'	
+with open(multi_name_file_tex, "rb") as fp:
 	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
 	
 		
