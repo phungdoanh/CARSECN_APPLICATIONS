@@ -53,9 +53,9 @@ with ZipFile(temple_multi, 'w') as zipObj:
  	# Add multiple files to the zip
  	for file in dirs:
  		#st.write(file)
- 		zipObj.write(file)
+ 		zipObj.write(temple+'//'file+'.txt')
 
-multi_name_file_tex=temple_multi+'.txt'	
+
 with open(temple_multi, "rb") as fp:
 	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
 	
