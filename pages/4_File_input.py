@@ -53,7 +53,7 @@ with ZipFile(temple_multi, 'w') as zipObj:
  	# Add multiple files to the zip
  	for file in dirs:
  		#st.write(file)
- 		zipObj.write(temple+'//'file)
+ 		zipObj.write(temple+'//'+file+'.txt')
 
 
 with open(temple_multi, "rb") as fp:
