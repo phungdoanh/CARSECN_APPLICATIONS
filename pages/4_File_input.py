@@ -45,7 +45,7 @@ if uploaded_file is not None:
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file)
 
 #dirs = os.listdir(path)
-multi_name_file = tempfile.gettempdir() + "/Multi_CARSEC/CS_Multi_"
+multi_name_file = tempfile.gettempdir() + "/Multi_CARSEC"
 dirs=multi_name_file
 
 #with ZipFile('Output_files\CARSEC_multi.zip', 'w') as zipObj:
