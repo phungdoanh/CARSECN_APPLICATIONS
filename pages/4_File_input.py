@@ -32,28 +32,20 @@ if uploaded_file is not None:
 		st.write(_tables[k])
 #%%%%%%%%%%%%%%%%%%%
 st.subheader('Download Muti CARSEC files')
-#path='Output_files\Multi_CARSEC'
-#if os.path.exists(path):
-#	dirs = os.listdir(path)
-#	for file in dirs:
-#		os.remove(path+'\\'+file)
-		
 
 if uploaded_file is not None:
 	multi_name_file = tempfile.gettempdir() + "/Multi_CARSEC/CS_Multi_"
 	#CS.CARSEC_Writer(DB=DB, export_path=name_file)
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file)
-
-#dirs = os.listdir(path)
+	
 dirs=tempfile.gettempdir() + "/Multi_CARSEC"
 
-#with ZipFile('Output_files\CARSEC_multi.zip', 'w') as zipObj:
+
 temple_multi=tempfile.gettempdir() +'/CARSEC_multi.zip'
 with ZipFile(temple_multi, 'w') as zipObj:
  	# Add multiple files to the zip
  	for file in dirs:
- 		#st.write(file)
- 		zipObj.write(temple_multi+'//'+file+'.txt')
+ 		zipObj.write(temple_multi+'/'+file)
 
 
 with open(temple_multi, "rb") as fp:
