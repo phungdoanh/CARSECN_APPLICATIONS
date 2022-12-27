@@ -49,13 +49,14 @@ multi_name_file = tempfile.gettempdir() + "/Multi_CARSEC"
 dirs=multi_name_file
 
 #with ZipFile('Output_files\CARSEC_multi.zip', 'w') as zipObj:
-with ZipFile('/CARSEC_multi.zip', 'w') as zipObj:
+temple_multi=tempfile.gettempdir() +'/CARSEC_multi.zip'
+with ZipFile(temple_multi, 'w') as zipObj:
  	# Add multiple files to the zip
  	for file in dirs:
  		st.write(file)
- 		zipObj.write('/CARSEC_multi'+'//'+file)
+ 		zipObj.write(temple_multi+'//'+file)
 
-multi_name_file_tex=multi_name_file+'.txt'	
+multi_name_file_tex=temple_multi+'.txt'	
 with open(multi_name_file_tex, "rb") as fp:
 	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
 	
