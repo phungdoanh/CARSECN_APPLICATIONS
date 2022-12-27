@@ -45,7 +45,8 @@ temple_multi=tempfile.gettempdir() +'/CARSEC_multi.zip'
 with ZipFile(temple_multi, 'w') as zipObj:
  	# Add multiple files to the zip
  	for file in dirs:
- 		zipObj.write(temple_multi+'/'+file)
+		filePath = os.path.join(temple_multi, file)
+ 		zipObj.write(filePath)
 
 
 with open(temple_multi, "rb") as fp:
