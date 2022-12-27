@@ -30,7 +30,7 @@ if uploaded_file is not None:
 	for k in _tables:  
 		st.write(_tables[k])
 
-st.subheader('Download CARSEC files')
+st.subheader('Download Muti CARSEC files')
 
 path='Output_files/Multi_CARSEC'
 if os.path.exists(path):
