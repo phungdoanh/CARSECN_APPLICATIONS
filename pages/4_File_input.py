@@ -52,8 +52,8 @@ temple_multi=tempfile.gettempdir() +'/CARSEC_multi.zip'
 with ZipFile(temple_multi, 'w') as zipObj:
  	# Add multiple files to the zip
  	for file in dirs:
- 		st.write(file)
- 		zipObj.write(temple_multi+'//'+file)
+ 		#st.write(file)
+ 		zipObj.write(file)
 
 multi_name_file_tex=temple_multi+'.txt'	
 with open(temple_multi, "rb") as fp:
