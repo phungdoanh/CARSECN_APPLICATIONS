@@ -46,7 +46,7 @@ with ZipFile(temple_multi, 'w') as zipObj:
  	# Add multiple files to the zip
  	for file in dirs:
 		
- 		zipObj.write(temple_multi+'\\'+file)
+ 		zipObj.write(temple_multi+file)
 
 
 with open(temple_multi, "rb") as fp:
