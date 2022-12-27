@@ -41,12 +41,12 @@ if uploaded_file is not None:
 dirs=tempfile.gettempdir() + "/Multi_CARSEC"
 
 
-temple_multi=tempfile.gettempdir() +"/CARSEC_multi.zip"
-with ZipFile(temple_multi, 'w') as zipObj:
+zip_path=tempfile.gettempdir() +"/CARSEC_multi.zip"
+with ZipFile(zip_path, 'w') as zipObj:
  	# Add multiple files to the zip
  	for file in dirs:
-		
- 		zipObj.write(temple_multi+file)
+		zip_path_files=tempfile.join(zip_path,file)
+ 		zipObj.write(zip_path_files)
 
 
 with open(temple_multi, "rb") as fp:
