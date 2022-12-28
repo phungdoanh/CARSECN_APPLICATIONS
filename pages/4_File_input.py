@@ -45,11 +45,7 @@ st.write(dirs)
 st.subheader('Download CARSEC files')
 
 path=os.walk("Output_files/Multi_CARSEC/CS_Multi_")
-if os.path.exists(path):
-	dirs = os.listdir(path)
-	for file in dirs:
-		os.remove(path+'//'+file)
-		
+	
 
 if uploaded_file is not None:
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=os.walk("Output_files/Multi_CARSEC/CS_Multi_"))
