@@ -37,6 +37,9 @@ if uploaded_file is not None:
 	multi_name_file = tempfile.gettempdir()
 	#CS.CARSEC_Writer(DB=DB, export_path=name_file)
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file+'/CS_Multi_')
+	with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
+		zipObj.write(uploaded_file)
+		
 	
 
 dirs=tempfile.gettempdir()
@@ -48,7 +51,7 @@ zip_path=tempfile.gettempdir()
 with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
  	#Add multiple files to the zip
 	for file in dirs:
-		print(file)
+		#print(file)
 		#zip_path_files=tempfile.join(zip_path,file)
  		#zipObj.write(zip_path+'//'+file)
 
