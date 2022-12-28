@@ -48,10 +48,10 @@ if uploaded_file is not None:
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=path)
 
 
-dirs = os.listdir(path)
+# dirs = os.listdir(path)
 with ZipFile('Output_files/CARSEC_multi.zip', 'w') as zipObj:
 	# Add multiple files to the zip
-	for file in dirs:
+	for file in path:
 		st.write(file)
 		zipObj.write(path+'//'+file)
 	
