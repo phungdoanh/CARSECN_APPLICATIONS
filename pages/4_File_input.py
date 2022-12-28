@@ -53,7 +53,7 @@ with ZipFile('Output_files/CARSEC_multi.zip', 'w') as zipObj:
 	# Add multiple files to the zip
 	for file in path:
 		st.write(file)
-		zipObj.write(path+'//'+file)
+		zipObj.write(file)
 	
 with open('Output_files/CARSEC_multi.zip', "rb") as fp:
 	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
