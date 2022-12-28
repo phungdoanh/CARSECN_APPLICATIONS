@@ -44,16 +44,16 @@ dirs=tempfile.gettempdir()
 st.write(dirs)
 
 
-#zip_path=tempfile.gettempdir() + "/CARSEC_multi.zip"
-#with ZipFile(zip_path, 'w') as zipObj:
- 	# Add multiple files to the zip
-#	for file in dirs:
-#		#zip_path_files=tempfile.join(zip_path,file)
- #		zipObj.write(zip_path+'//'+file)
+zip_path=tempfile.gettempdir()
+with ZipFile(zip_path, 'w') as zipObj:
+ 	Add multiple files to the zip
+	for file in dirs:
+		#zip_path_files=tempfile.join(zip_path,file)
+ 		zipObj.write(zip_path+'//'+file)
 
 
-#with open(zip_path, "rb") as fp:
-#	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
+with open(zip_path, "rb") as fp:
+	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
 	
 		
 #%%
