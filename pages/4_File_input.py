@@ -36,11 +36,7 @@ st.subheader('Download Muti CARSEC files')
 if uploaded_file is not None:
 	multi_name_file = tempfile.gettempdir()
 	#CS.CARSEC_Writer(DB=DB, export_path=name_file)
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file+'/CS_Multi_')
-	with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
-		zipObj.write(multi_name_file+'/CS_Multi_.txt')
-		
-	
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file+'/CS_Multi_')	
 
 dirs=tempfile.gettempdir()
 
