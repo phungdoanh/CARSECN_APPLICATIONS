@@ -44,7 +44,7 @@ st.subheader('Download Muti CARSEC files')
 
 path=os.walk("Output_files/Multi_CARSEC/CS_Multi_")
 	
-for (root,dirs,files) in os.walk('Output_files/Multi_CARSEC/CS_Multi_', topdown=True):
+for (root,dirs,files) in os.walk('.', topdown=True):
         print (root)
         print (dirs)
         print (files)
