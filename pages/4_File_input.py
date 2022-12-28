@@ -45,7 +45,7 @@ st.write(dirs)
 path=os.walk("Output_files/Multi_CARSEC/CS_Multi_")
 	
 if uploaded_file is not None:
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=path)
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=str(path))
 
 
 # dirs = os.listdir(path)
