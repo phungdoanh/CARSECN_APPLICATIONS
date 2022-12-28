@@ -46,7 +46,7 @@ st.write(dirs)
 
 zip_path=tempfile.gettempdir()
 with ZipFile(zip_path, 'w') as zipObj:
- 	Add multiple files to the zip
+ 	#Add multiple files to the zip
 	for file in dirs:
 		#zip_path_files=tempfile.join(zip_path,file)
  		zipObj.write(zip_path+'//'+file)
