@@ -38,7 +38,7 @@ if uploaded_file is not None:
 	#CS.CARSEC_Writer(DB=DB, export_path=name_file)
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file+'/CS_Multi_')
 	with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
-		zipObj.write(uploaded_file)
+		zipObj.write(multi_name_file+'/CS_Multi_')
 		
 	
 
