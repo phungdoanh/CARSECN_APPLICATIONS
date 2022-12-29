@@ -103,13 +103,13 @@ if uploaded_file is not None:
 
 
 dirs = os.listdir(path)
-with ZipFile('Output_files\CARSEC_multi.zip', 'w') as zipObj:
+with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
 	# Add multiple files to the zip
 	for file in dirs:
 		st.write(file)
-		zipObj.write('Output_files\Multi_CARSEC'+'/'+file)
+		zipObj.write('/app/carsecn_applications/Output_files/Multi_CARSEC'+'/'+file)
 	
-with open('Output_files\CARSEC_multi.zip', "rb") as fp:
+with open('CARSEC_multi.zip', "rb") as fp:
 	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
 # =============================================================================
 	
