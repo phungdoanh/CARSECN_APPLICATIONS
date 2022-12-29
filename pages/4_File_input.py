@@ -15,8 +15,6 @@ from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
 import CARSEC as CS
 from zipfile import ZipFile
 import tempfile
-import streamlit as st
-from directorypicker import st_directory_picker
 
 
 #%%%%%%%%%%%%%%%%%%
