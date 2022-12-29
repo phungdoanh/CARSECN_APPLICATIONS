@@ -50,4 +50,4 @@ def st_directory_picker(initial_path=Path()):
                 )
                 st.experimental_rerun()
 
-    return st.session_state.
+    return st.session_state.path
