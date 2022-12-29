@@ -93,7 +93,7 @@ st.subheader('Download Muti CARSEC files')
 
 
 #=============================================================================
-path='\app\carsecn_applications\Output_files\Multi_CARSEC'
+path='/app/carsecn_applications/Output_files/Multi_CARSEC'
 if os.path.exists(path):
 	dirs = os.listdir(path)
 	for file in dirs:
@@ -101,7 +101,7 @@ if os.path.exists(path):
 		
 
 if uploaded_file is not None:
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path='\app\carsecn_applications\Output_files\Multi_CARSEC\CS_Multi_')
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path='/app/carsecn_applications/Output_files/Multi_CARSEC/CS_Multi_')
 
 
 dirs = os.listdir(path)
