@@ -41,7 +41,6 @@ st.subheader('Download Muti CARSEC files')
 
 #dirs=tempfile.gettempdir()
 
-st.write(st.session_state.path)
 
 path=os.walk("Output_files/Multi_CARSEC/CS_Multi_")
 for (root,dirs,files) in os.walk('.', topdown=True):
